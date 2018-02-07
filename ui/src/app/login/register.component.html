@@ -1,0 +1,24 @@
+<h1>Create Account</h1>
+
+<form [formGroup]="form" (submit)="onRegister()">
+  <div class="register-container">
+
+    <mat-form-field>
+      <input formControlName="username" matInput placeholder="Username">
+      <mat-error>Your username must be at least 4 characters</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input formControlName="password" type="password" matInput placeholder="Password">
+      <mat-error>Your password must be at least 4 characters</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input formControlName="confirmPassword" type="password" matInput placeholder="Confirm Password">
+      <mat-error *ngIf="form.controls['confirmPassword'].errors?.match">Passwords do not match</mat-error>
+    </mat-form-field>
+
+    <button [disabled]="form.invalid" mat-raised-button color="primary">Create Account</button>
+  </div>
+
+</form>

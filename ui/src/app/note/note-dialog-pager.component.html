@@ -1,0 +1,17 @@
+<div class="dialog-container">
+  <mat-card-header>
+    <img mat-card-avatar src="{{data.repo?.owner?.avatar_url}}" alt="avatar">
+    <mat-card-title>{{data.repo?.full_name}}</mat-card-title>
+    <mat-card-subtitle>{{data.repo?.description}}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let note of data.notes">
+      <mat-expansion-panel-header>
+        <mat-panel-title>{{note.title}}</mat-panel-title>
+      </mat-expansion-panel-header>
+      <p>{{note.description}}</p>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
+

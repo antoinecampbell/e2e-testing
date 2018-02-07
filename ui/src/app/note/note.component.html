@@ -1,0 +1,25 @@
+<h1>Notes</h1>
+
+<div class="note-container">
+
+  <div *ngIf="notes?.length === 0">
+    <h3>You do not have any notes</h3>
+  </div>
+
+  <mat-card *ngFor="let note of notes">
+    <mat-card-header>
+      <img mat-card-avatar src="{{note.githubRepo?.owner?.avatar_url}}" alt="avatar">
+      <mat-card-title>{{note.githubRepo?.full_name}}</mat-card-title>
+      <mat-card-subtitle>{{note.githubRepo?.description}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="note-title">{{note.title}}</div>
+      <p>{{note.description}}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <a mat-button href="{{note.githubRepo?.html_url}}" target="_blank">GITHUB</a>
+      <button mat-button color="warn" (click)="onDeleteNote(note)">DELETE</button>
+    </mat-card-actions>
+  </mat-card>
+
+</div>

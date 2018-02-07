@@ -1,0 +1,23 @@
+<div class="dialog-container">
+  <h2 mat-dialog-title>Create Note</h2>
+  <form [formGroup]="form">
+    <mat-card-header>
+      <img mat-card-avatar src="{{data.repo?.owner?.avatar_url}}" alt="avatar">
+      <mat-card-title>{{data.repo?.full_name}}</mat-card-title>
+      <mat-card-subtitle>{{data.repo?.description}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-dialog-content>
+      <mat-form-field>
+        <input formControlName="title" matInput placeholder="Note Title">
+      </mat-form-field>
+      <br/>
+      <mat-form-field>
+        <textarea formControlName="description" matInput placeholder="Description"></textarea>
+      </mat-form-field>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <button mat-raised-button [disabled]="form.invalid" (click)="onCreateNote()" color="primary">Save</button>
+      <button mat-button mat-dialog-close>Cancel</button>
+    </mat-dialog-actions>
+  </form>
+</div>

@@ -1,0 +1,46 @@
+<h1>Github Repo Search</h1>
+
+<form [formGroup]="form" (submit)="onSearch()">
+  <mat-form-field>
+    <input formControlName="searchTerm" matInput autocomplete="off" type="text" placeholder="Search for repositories">
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+</form>
+
+<div class="repo-container">
+  <mat-card *ngFor="let repo of repos; trackBy: repoTrackByFn">
+    <mat-card-header>
+      <img mat-card-avatar src="{{repo.owner?.avatar_url}}" alt="avatar">
+      <mat-card-title>{{repo.full_name}}</mat-card-title>
+      <mat-card-subtitle>{{repo.description}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="icon-container">
+        <div>
+          <mat-icon color="primary">call_split</mat-icon>
+          <br/>{{repo.forks | number:0}}
+        </div>
+        <div>
+          <mat-icon color="primary">visibility</mat-icon>
+          <br/>{{repo.watchers | number:0}}
+        </div>
+        <div>
+          <mat-icon color="primary">star</mat-icon>
+          <br/>{{repo.stargazers_count | number:0}}
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button *ngIf="repo.notes?.length" mat-raised-button color="primary" (click)="onShowNotes(repo)">
+        NOTES ({{repo.notes?.length | number:0}})
+      </button>
+      <a mat-button href="{{repo.html_url}}" target="_blank">GITHUB</a>
+      <button (click)="onCreateNote(repo)" mat-button>ADD NOTE</button>
+    </mat-card-actions>
+  </mat-card>
+
+  <mat-spinner *ngIf="loading"></mat-spinner>
+  <div *ngIf="repos?.length === 0">
+    <h3>No search results found</h3>
+  </div>
+</div>

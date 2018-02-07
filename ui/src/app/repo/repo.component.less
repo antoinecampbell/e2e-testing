@@ -1,0 +1,23 @@
+.repo-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0 -10px;
+  & mat-card {
+    margin: 10px;
+    width: 300px;
+  }
+  & .icon-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: center;
+  }
+  & mat-spinner {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-top: -50px;
+    margin-left: -50px;
+  }
+}

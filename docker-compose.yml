@@ -1,0 +1,15 @@
+version: '2'
+services:
+  postgres:
+    image: postgres:10-alpine
+    container_name: postgres
+    environment:
+      - POSTGRES_USER=notes
+      - POSTGRES_PASSWORD=notes
+    ports:
+      - "5432:5432"
+  sonar:
+    image: sonarqube:alpine
+    ports:
+      - "9000:9000"
+      - "9092:9092"

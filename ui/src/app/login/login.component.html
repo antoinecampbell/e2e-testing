@@ -1,0 +1,19 @@
+<h1>Sign In</h1>
+
+<form [formGroup]="form" (submit)="onLogin()">
+  <div class="login-container">
+
+    <mat-form-field>
+      <input formControlName="username" matInput placeholder="Username">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input formControlName="password" type="password" matInput placeholder="Password">
+    </mat-form-field>
+
+    <button [disabled]="form.invalid" mat-raised-button color="primary">Sign In</button>
+    <br/>
+    <a routerLink="/register">Create Account</a>
+  </div>
+
+</form>

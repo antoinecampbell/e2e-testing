@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/notes
+    username: notes
+    password: notes
+  jpa:
+    hibernate:
+      ddl-auto: update
+server:
+  context-path: /api
+
+---
+
+spring:
+  profiles: e2e
+  datasource:
+    url: jdbc:h2:./build/database/db;AUTO_SERVER=TRUE
+    password:
+    data: classpath:e2e-data.sql
+  jpa:
+    hibernate:
+      ddl-auto: create-drop

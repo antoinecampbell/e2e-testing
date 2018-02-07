@@ -1,0 +1,19 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <a *ngIf="userService.user" mat-button routerLink="">Notes</a>
+    <a *ngIf="userService.user" mat-button routerLink="repo">Repos</a>
+    <span class="spacer"></span>
+    <a *ngIf="!userService.user" mat-button routerLink="/login">Sign In</a>
+    <button *ngIf="userService.user" mat-button [matMenuTriggerFor]="menu">
+      <mat-icon>account_circle</mat-icon>
+      {{userService.user?.name}}
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="onLogout()">Sign out</button>
+    </mat-menu>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<div class="page-content">
+  <router-outlet></router-outlet>
+</div>
