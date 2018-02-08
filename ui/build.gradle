@@ -15,6 +15,10 @@ task e2eTestCI(type: NpmTask, group: 'testing', dependsOn: npmInstall) {
   args = ['run', 'e2e:ci']
 }
 
+task npmStart(type: NpmTask, group: 'node', dependsOn: npmInstall) {
+  args = ['start']
+}
+
 task clean (type: Delete) {
   delete "${project.buildDir}"
 }
