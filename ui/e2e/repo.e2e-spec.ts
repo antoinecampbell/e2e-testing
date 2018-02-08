@@ -2,7 +2,7 @@ import {browser} from "protractor";
 import {E2EUtils} from "./e2e-utils";
 import {RepoPage} from "./repo.po";
 
-describe('Login Page', () => {
+describe('Repo Page', () => {
   const page: RepoPage = new RepoPage();
 
   beforeAll(() => {
