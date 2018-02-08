@@ -26,3 +26,8 @@ in the file has their username set as their password.
 
 ## Running the UI
 To start the UI run the `npm start` command from the **ui/** directory or run the gradle task `npmStart`.
+
+## Running the end-to-end tests
+To run the e2e tests locally, ensure the api is running locally using the e2e profile and run the `npm run e2e`
+command from the **ui/** directory and the e2e tests will start. Artifacts from the test are located in the
+**ui/build/** directory including images from the e2e tests.
