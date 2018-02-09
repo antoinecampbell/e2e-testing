@@ -6,22 +6,22 @@
 - Docker (optional)
 
 ## Setup
-- Run `npm install` from the **ui/** directory to install Node depenencies 
-or you can use the gradle task `npmInstall` which will alaso install NodeJS if it's not already installed.
+- Run `npm install` from the **ui/** directory to install Node dependencies 
+or you can use the gradle task `npmInstall` which will also install NodeJS if it's not already installed.
 
 ## Running the API
 There are two Spring profiles that can be used when running the API, **default** and **e2e**.
 
 #### default
 The **default** profile requires Postgres to be running locally on port 5432. There is a docker-compose.yml
-in the root directory to sping up a Postgres instance with the desired settings. To start the default
+in the root directory to spin up a Postgres instance with the desired settings. To start the default
 profile run the gradle task `bootRun`.
 
 #### e2e
 The **e2e** profile uses an embedded H2 database and returns canned responses when reaching out to external
 services, in this case the Github REST API. To start the e2e profile run the gradle task `bootRun` but make
 sure you set a JVM option or an environment variable: `spring.profiles.active=e2e`. The e2e profile starts
-with some canned data in the datbase as well and two users defined in the e2e-data.sql file. Each user defined
+with some canned data in the database as well and two users defined in the e2e-data.sql file. Each user defined
 in the file has their username set as their password.
 
 ## Running the UI
