@@ -5,6 +5,7 @@ plugins {
 
 node {
   version '9.4.0'
+  download true
 }
 
 task unitTestCI(type: NpmTask, group: 'testing', dependsOn: npmInstall) {
