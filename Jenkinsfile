@@ -1,11 +1,6 @@
-pipeline {
-    stages {
-        stage('scm') {
-            git 'https://github.com/JayFialkowski/e2e-testing.git'
-        }
-        stage('ui test') {
-            sh './gradlew ui:unitTestCI'
-        }
+node {
+    stage('scm') {
+        git 'https://github.com/JayFialkowski/e2e-testing.git'
     }
 }
 // node {
