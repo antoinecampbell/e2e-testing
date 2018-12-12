@@ -5,7 +5,7 @@ node {
     }  
     stage("sonarqube") {
         withSonarQubeEnv('SonarQube Scanner') {
-            sh './gradlew --info ui:sonarqube'
+            sh './gradlew ui:sonarqube'
         }
       }
     // stage ('API test') {
