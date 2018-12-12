@@ -28,6 +28,6 @@ sonarqube {
   properties {
     property 'sonar.projectKey', 'e2e-testing-ui'
     property 'sonar.sources', 'src'
-    property 'sonar.typescript.lcov.reportPaths', 'build/test-reports/coverage/lcov.info'
+    property 'sonar.typescript.lcov.reportPaths', 'build/test-results/coverage/lcov.info'
   }
 }

@@ -1,7 +1,13 @@
 node {
 	checkout scm
+    stage('docker') {
+        sh 'docker-compose up'
+    }
     stage('UI test') {
     	sh './gradlew ui:unitTestCI'
+    }  
+    stage('sonarqube') {
+        sh './gradlew ui:sonarqube'
     }
     // stage ('API test') {
     // 	sh './gradlew api:clean api:build'
