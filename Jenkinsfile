@@ -3,7 +3,7 @@ node {
     stage('UI test') {
     	sh './gradlew ui:unitTestCI'
     }  
-    stage("sonarqube") {
+    stage("SonarQube") {
         withSonarQubeEnv('SonarQube Scanner') {
             sh './gradlew ui:sonarqube'
         }
@@ -19,6 +19,16 @@ stage("Quality Gate"){
       error "Pipeline aborted due to quality gate failure: ${qg.status}"
     }
   }
+}
+stage("Test Results") {
+    publishHTML([
+        allowMissing: false, 
+        alwaysLinkToLastBuild: false, 
+        keepAll: false, 
+        reportDir: 'ui/build/test-results/coverage', 
+        reportFiles: 'index.html', 
+        reportName: 'UI Coverage', 
+        reportTitles: 'fdsjfsdfj'])
 }
 // node {
 //     stage('Checkout') {
@@ -44,14 +54,6 @@ stage("Quality Gate"){
 //     //         reportDir: 'api/build/reports/coverage', 
 //     //         reportFiles: 'index.html', 
 //     //         reportName: 'API Coverage', 
-//     //         reportTitles: ''])
-//     //     publishHTML([
-//     //         allowMissing: false, 
-//     //         alwaysLinkToLastBuild: false, 
-//     //         keepAll: false, 
-//     //         reportDir: 'ui/build/test-results/coverage', 
-//     //         reportFiles: 'index.html', 
-//     //         reportName: 'UI Coverage', 
 //     //         reportTitles: ''])
 //     //     archiveArtifacts 'ui/build/test-results/e2e/images/*'
 //     // }
