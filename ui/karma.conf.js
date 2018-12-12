@@ -23,9 +23,26 @@ module.exports = function (config) {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
     coverageIstanbulReporter: {
-      reports: ['html', 'lcovonly'],
+      dir: path.join(__dirname, 'build/test-results/coverage'),
+      reports: ['html', 'lcovonly', 'text-summary'],
       fixWebpackSourcePaths: true,
-      dir: path.join(__dirname, 'build/test-results/coverage')
+      combineBrowserReports: true,
+      skipFilesWithNoCoverage: true,
+      thresholds: {
+        emitWarning: false,
+        global: {
+          statements: 80,
+          lines: 80,
+          branches: 80,
+          functions: 80
+        },
+        each: {
+          statements: 80,
+          lines: 80,
+          branches: 80,
+          functions: 80
+        }
+      }
     },
     junitReporter: {
       outputDir: 'build/test-results/unit'
