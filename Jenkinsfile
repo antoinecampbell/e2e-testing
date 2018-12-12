@@ -1,9 +1,9 @@
 pipeline {
     agent any
     stages {
-        stage('scm') {
+        stage('build ui') {
             steps {
-                git 'https://github.com/JayFialkowski/e2e-testing.git'
+                sh './gradlew ui:unitTestCI'
             }
         }
     }
