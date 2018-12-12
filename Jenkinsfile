@@ -1,10 +1,13 @@
 pipeline {
     agent any
     stages {
-        stage('build ui') {
+        stage('UI test') {
             steps {
                 sh './gradlew ui:unitTestCI'
             }
+        }
+        stage ('API test') {
+            sh './gradlew api:clean api:build'
         }
     }
 }
@@ -14,9 +17,6 @@ pipeline {
 //     }
 //     // stage('API Test') {
 //     //     sh './gradlew api:clean api:build'
-//     // }
-//     // stage('UI Test') {
-//     //     sh './gradlew ui:unitTestCI'
 //     // }
 //     // stage('E2E-Tests') {
 //     //     sh '''
