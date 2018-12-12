@@ -7,7 +7,9 @@ pipeline {
             }
         }
         stage ('API test') {
-            sh './gradlew api:clean api:build'
+            steps {
+                sh './gradlew api:clean api:build'
+            }
         }
     }
 }
