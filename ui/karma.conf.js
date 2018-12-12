@@ -27,22 +27,7 @@ module.exports = function (config) {
       reports: ['html', 'lcovonly', 'text-summary'],
       fixWebpackSourcePaths: true,
       combineBrowserReports: true,
-      skipFilesWithNoCoverage: true,
-      thresholds: {
-        emitWarning: false,
-        global: {
-          statements: 10,
-          lines: 10,
-          branches: 10,
-          functions: 10
-        },
-        each: {
-          statements: 10,
-          lines: 10,
-          branches: 10,
-          functions: 10
-        }
-      }
+      skipFilesWithNoCoverage: true
     },
     junitReporter: {
       outputDir: 'build/test-results/unit'
