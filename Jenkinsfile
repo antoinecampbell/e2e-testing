@@ -1,17 +1,11 @@
-pipeline {
-    agent any
-    stages {
-        stage('UI test') {
-            steps {
-                sh './gradlew ui:unitTestCI'
-            }
-        }
-        stage ('API test') {
-            steps {
-                sh './gradlew api:clean api:build'
-            }
-        }
+node {
+	checkout scm
+    stage('UI test') {
+    	sh './gradlew ui:unitTestCI'
     }
+    // stage ('API test') {
+    // 	sh './gradlew api:clean api:build'
+    // }
 }
 // node {
 //     stage('Checkout') {
