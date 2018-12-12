@@ -5,7 +5,7 @@ node {
     	sh './gradlew ui:unitTestCI'
     }  
     stage("sonarqube") {
-        withSonarQubeEnv('My SonarQube Server') {
+        withSonarQubeEnv('SonarQube Scanner') {
             sh './gradlew ui:sonarqube'
         }
       }
