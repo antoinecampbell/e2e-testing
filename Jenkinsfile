@@ -1,6 +1,11 @@
-node {
-    stage('scm') {
-        git 'https://github.com/JayFialkowski/e2e-testing.git'
+pipeline {
+    agent any
+    stages {
+        stage('scm') {
+            steps {
+                git 'https://github.com/JayFialkowski/e2e-testing.git'
+            }
+        }
     }
 }
 // node {
