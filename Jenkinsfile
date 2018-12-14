@@ -1,3 +1,4 @@
+options { buildDiscarder(logRotator(numToKeepStr: '5')) }
 node {
 	checkout scm
     stage('UI test') {
