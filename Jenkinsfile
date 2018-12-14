@@ -12,6 +12,10 @@ node {
     // 	sh './gradlew api:clean api:build'
     // }
 }
+stage("Test env vars") {
+  sh './echo ${env.BRANCH_NAME}'
+  sh './echo ${env.CHANGE_BRANCH}'
+}
 stage("Quality Gate"){
   timeout(time: 1, unit: 'HOURS') { // Just in case something goes wrong, pipeline will be killed after a timeout
     def qg = waitForQualityGate() // Reuse taskId previously collected by withSonarQubeEnv
@@ -19,16 +23,6 @@ stage("Quality Gate"){
       error "Pipeline aborted due to quality gate failure: ${qg.status}"
     }
   }
-}
-stage("Test Results") {
-    publishHTML([
-        allowMissing: false, 
-        alwaysLinkToLastBuild: false, 
-        keepAll: false, 
-        reportDir: 'ui/build/test-results/coverage', 
-        reportFiles: 'index.html', 
-        reportName: 'UI Coverage', 
-        reportTitles: 'fdsjfsdfj'])
 }
 // node {
 //     stage('Checkout') {
