@@ -1,7 +1,7 @@
 pipeline {
   agent any 
   options {
-    buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
+    buildDiscarder(logRotator(numToKeepStr: '15', artifactNumToKeepStr: '15'))
   }
   stages {
     stage('SCM') {
@@ -9,11 +9,11 @@ pipeline {
         checkout scm
       }
     }
-    // stage('UI test') {
-    //   steps {
-    // 	  sh './gradlew ui:unitTestCI'
-    //   }
-    // }
+    stage('UI test') {
+      steps {
+    	  sh './gradlew ui:unitTestCI'
+      }
+    }
     // stage("SonarQube") {
     //   steps {
     //     withSonarQubeEnv('SonarQube Scanner') {
