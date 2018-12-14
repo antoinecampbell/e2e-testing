@@ -17,7 +17,7 @@ pipeline {
     stage("SonarQube") {
       steps {
         withSonarQubeEnv('SonarQube Scanner') {
-          sh './gradlew ui:sonarqube'
+          sh './gradlew -Pbranch=someBranchName ui:sonarqube'
         }
       }
     }  
