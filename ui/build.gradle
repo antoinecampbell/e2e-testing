@@ -25,6 +25,9 @@ task clean (type: Delete) {
 }
 
 sonarqube {
+  if (project.hasProperty('args')) {
+    args project.args.split(',')
+  }
   properties {
     property 'sonar.host.url', '$SONAR_HOST_URL'
     property 'sonar.projectName', 'ppt-demo UI'
