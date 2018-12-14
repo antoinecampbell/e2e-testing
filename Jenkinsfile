@@ -16,9 +16,9 @@ pipeline {
     }
     stage("SonarQube") {
       steps {
+        def name = "${BRANCH_NAME}".replaceAll(/\\/, "_");
+        sh "echo name is ${name}"
         withSonarQubeEnv('SonarQube Scanner') {
-          def name = "${BRANCH_NAME}".replaceAll(/\\/, "_");
-          sh "echo name is ${name}"
           sh "./gradlew -Pjob=ppt-demo_${name} ui:sonarqube"
         }
       }
