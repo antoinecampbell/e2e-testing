@@ -1,30 +1,42 @@
-options { buildDiscarder(logRotator(numToKeepStr: '5')) }
-node {
-	checkout scm
+pipeline {
+  agent any 
+  options {
+    buildDiscarder(logRotator(numToKeepStr: '30', artifactNumToKeepStr: '30'))
+  }
+  stages {
+    stage('SCM') {
+      steps {
+        checkout scm
+      }
+    }
     stage('UI test') {
-    	sh './gradlew ui:unitTestCI'
+      steps {
+    	  sh './gradlew ui:unitTestCI'
+      }
     }  
-    stage("SonarQube") {
+  }
+  stage("SonarQube") {
+    steps {
       withSonarQubeEnv('SonarQube Scanner') {
         sh './gradlew ui:sonarqube'
       }
     }
-    stage("Test env vars") {
-      echo sh(returnStdout: true, script: 'env')
-    }
-    // stage ('API test') {
+  }
+      // stage ('API test') {
     // 	sh './gradlew api:clean api:build'
     // }
-    
-}
-stage("Quality Gate"){
-  timeout(time: 1, unit: 'HOURS') { // Just in case something goes wrong, pipeline will be killed after a timeout
-    def qg = waitForQualityGate() // Reuse taskId previously collected by withSonarQubeEnv
-    if (qg.status != 'OK') {
-      error "Pipeline aborted due to quality gate failure: ${qg.status}"
+  stage("Quality Gate"){
+    steps {
+      timeout(time: 1, unit: 'HOURS') { // Just in case something goes wrong, pipeline will be killed after a timeout
+        def qg = waitForQualityGate() // Reuse taskId previously collected by withSonarQubeEnv
+        if (qg.status != 'OK') {
+          error "Pipeline aborted due to quality gate failure: ${qg.status}"
+        }
+      }
     }
   }
 }
+
 // node {
 //     stage('Checkout') {
 //         git 'https://github.com/antoinecampbell/e2e-testing.git'
