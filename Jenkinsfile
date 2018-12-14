@@ -14,13 +14,13 @@ pipeline {
     	  sh './gradlew ui:unitTestCI'
       }
     }
-    // stage("SonarQube") {
-    //   steps {
-    //     withSonarQubeEnv('SonarQube Scanner') {
-    //       sh './gradlew ui:sonarqube'
-    //     }
-    //   }
-    // }  
+    stage("SonarQube") {
+      steps {
+        withSonarQubeEnv('SonarQube Scanner') {
+          sh './gradlew ui:sonarqube'
+        }
+      }
+    }  
     // stage("Quality Gate"){
     //   steps {
     //     timeout(time: 1, unit: 'HOURS') { // Just in case something goes wrong, pipeline will be killed after a timeout
