@@ -17,7 +17,7 @@ pipeline {
     stage("SonarQube") {
       steps {
         withSonarQubeEnv('SonarQube Scanner') {
-          sh "./gradlew -Pjob=ppt-demo_${BRANCH_NAME} ui:sonarqube | sed -e \"s/\\///g\""
+          sh "./gradlew -Pjob=ppt-demo_${BRANCH_NAME} ui:sonarqube | sed -e \"s/\///g\""
         }
       }
     }  
