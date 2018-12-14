@@ -19,12 +19,15 @@ pipeline {
         withSonarQubeEnv('SonarQube Scanner') {
           sh './gradlew ui:sonarqube'
         }
-        def qg = waitForQualityGate() // Reuse taskId previously collected by withSonarQubeEnv
-        if (qg.status != 'OK') {
-          error "Pipeline aborted due to quality gate failure: ${qg.status}"
-        }
       }
     }  
+    stage("Quality Gate"){
+      steps {
+        timeout(time: 1, unit: 'HOURS') {
+          waitForQualityGate abortPipeline: true
+        }
+      }
+    }
   }
       // stage ('API test') {
     // 	sh './gradlew api:clean api:build'
