@@ -17,14 +17,11 @@ pipeline {
     stage("SonarQube") {
       steps {
         withSonarQubeEnv('SonarQube Scanner') {
-          sh './gradlew -Pjob=ppt-demo_${JOB_NAME.replace("/","_")} ui:sonarqube'
+          sh './gradlew -Pjob=ppt-demo_${BRANCH_NAME.replace("x","z")} ui:sonarqube'
         }
       }
     }  
     stage("Quality Gate") {
-      options {
-        timeout(time: 1, unit: 'HOURS') 
-      }
       steps {
         timeout(time: 1, unit: 'HOURS') {
           waitForQualityGate abortPipeline: true
@@ -32,9 +29,7 @@ pipeline {
       }
     }
     stage("DEV Deployment") {
-      when {
-        branch 'develop'
-      }
+      when { branch 'develop' }
       steps {
         sh 'echo deploying dev'
       }
