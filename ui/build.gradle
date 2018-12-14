@@ -30,8 +30,8 @@ sonarqube {
   }
   properties {
     property 'sonar.host.url', '$SONAR_HOST_URL'
-    property 'sonar.projectName', 'ppt-demo UI'
-    property 'sonar.projectKey', "${branch}"
+    property 'sonar.projectName', "${job}"
+    property 'sonar.projectKey', "${job}"
     property 'sonar.sources', 'src'
     property 'sonar.typescript.lcov.reportPaths', 'build/test-results/coverage/lcov.info'
   }
