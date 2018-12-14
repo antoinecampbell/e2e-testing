@@ -21,11 +21,22 @@ pipeline {
         }
       }
     }  
-    stage("Quality Gate"){
+    stage("Quality Gate") {
+      options {
+        timeout(time: 1, unit: 'HOURS') 
+      }
       steps {
         timeout(time: 1, unit: 'HOURS') {
           waitForQualityGate abortPipeline: true
         }
+      }
+    }
+    stage("DEV Deployment") {
+      when {
+        branch 'develop'
+      }
+      steps {
+        sh 'echo deploying dev'
       }
     }
   }
