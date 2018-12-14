@@ -13,8 +13,8 @@ node {
     // }
 }
 stage("Test env vars") {
-  sh './echo ${env.BRANCH_NAME}'
-  sh './echo ${env.CHANGE_BRANCH}'
+  sh 'echo ${env.BRANCH_NAME}'
+  sh 'echo ${env.CHANGE_BRANCH}'
 }
 stage("Quality Gate"){
   timeout(time: 1, unit: 'HOURS') { // Just in case something goes wrong, pipeline will be killed after a timeout
