@@ -4,17 +4,17 @@ node {
     	sh './gradlew ui:unitTestCI'
     }  
     stage("SonarQube") {
-        withSonarQubeEnv('SonarQube Scanner') {
-            sh './gradlew ui:sonarqube'
-        }
+      withSonarQubeEnv('SonarQube Scanner') {
+        sh './gradlew ui:sonarqube'
       }
+    }
+    stage("Test env vars") {
+      sh(returnStdout: true, script: 'echo ${env.BRANCH_NAME}')
+    }
     // stage ('API test') {
     // 	sh './gradlew api:clean api:build'
     // }
-}
-stage("Test env vars") {
-  sh 'echo ${env.BRANCH_NAME}'
-  sh 'echo ${env.CHANGE_BRANCH}'
+    
 }
 stage("Quality Gate"){
   timeout(time: 1, unit: 'HOURS') { // Just in case something goes wrong, pipeline will be killed after a timeout
