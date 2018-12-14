@@ -25,14 +25,11 @@ task clean (type: Delete) {
 }
 
 sonarqube {
-  if (project.hasProperty('args')) {
-    args project.args.split(',')
-  }
   properties {
     property 'sonar.host.url', '$SONAR_HOST_URL'
     property 'sonar.projectName', "${job}"
     property 'sonar.projectKey', "${job}"
-    property 'sonar.branch', "${branch}"
+    property 'sonar.branch.name', "${branch}"
     property 'sonar.sources', 'src'
     property 'sonar.typescript.lcov.reportPaths', 'build/test-results/coverage/lcov.info'
   }

@@ -18,7 +18,7 @@ pipeline {
       steps {
         withSonarQubeEnv('SonarQube Scanner') {
           // sh './gradlew -Pjob=ppt-demo_${BRANCH_NAME} ui:sonarqube'
-          sh './gradlew -Pjob=ppt-demo -Pbranch=some_branch ui:sonarqube'
+          sh './gradlew -Pjob=ppt-demo -Pbranch=${BRANCH_NAME} ui:sonarqube'
         }
       }
     }  
