@@ -9,7 +9,7 @@ node {
       }
     }
     stage("Test env vars") {
-      sh(returnStdout: true, script: 'echo ${env.BRANCH_NAME}')
+      echo sh(returnStdout: true, script: 'env')
     }
     // stage ('API test') {
     // 	sh './gradlew api:clean api:build'
