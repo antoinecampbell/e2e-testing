@@ -17,7 +17,7 @@ pipeline {
     stage("SonarQube") {
       steps {
         withSonarQubeEnv('SonarQube Scanner') {
-          sh './gradlew -Pjob=someJobName ui:sonarqube'
+          sh './gradlew -Pjob=${JOB_NAME} ui:sonarqube'
         }
       }
     }  
