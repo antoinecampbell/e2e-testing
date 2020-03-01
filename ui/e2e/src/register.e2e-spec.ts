@@ -1,6 +1,6 @@
-import {browser} from "protractor";
-import {E2EUtils} from "./e2e-utils";
-import {RegisterPage} from "./register.po";
+import {browser} from 'protractor';
+import {E2EUtils} from './e2e-utils';
+import {RegisterPage} from './register.po';
 
 
 describe('Register Page', () => {

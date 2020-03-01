@@ -4,7 +4,7 @@ plugins {
 }
 
 node {
-  version '9.4.0'
+  version '12.13.1'
   download true
 }
 

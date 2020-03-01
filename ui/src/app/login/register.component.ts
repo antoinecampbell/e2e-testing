@@ -1,9 +1,9 @@
-import {Component} from "@angular/core";
-import {FormBuilder, FormGroup, ValidatorFn, Validators} from "@angular/forms";
-import {UserService} from "./user.service";
-import {Router} from "@angular/router";
-import {MatSnackBar} from "@angular/material";
-import {HttpErrorResponse} from "@angular/common/http";
+import {Component} from '@angular/core';
+import {FormBuilder, FormGroup, ValidatorFn, Validators} from '@angular/forms';
+import {UserService} from './user.service';
+import {Router} from '@angular/router';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {HttpErrorResponse} from '@angular/common/http';
 
 @Component({
   templateUrl: './register.component.html',
@@ -29,9 +29,9 @@ export class RegisterComponent {
   passwordValidator(): ValidatorFn {
     return (form: FormGroup): { [key: string]: any } => {
       if (form) {
-        form.controls['confirmPassword'].setErrors(null);
-        if (form.controls['password'].value !== form.controls['confirmPassword'].value) {
-          form.controls['confirmPassword'].setErrors({match: true});
+        form.controls.confirmPassword.setErrors(null);
+        if (form.controls.password.value !== form.controls.confirmPassword.value) {
+          form.controls.confirmPassword.setErrors({match: true});
         }
       }
       return {};
@@ -45,10 +45,10 @@ export class RegisterComponent {
       }, (error: HttpErrorResponse) => {
         if (error && error.status === 409) {
           this.matSnackBar.open('Error username already taken', null,
-            {duration: 4000, verticalPosition: "top"});
+            {duration: 4000, verticalPosition: 'top'});
         } else {
           this.matSnackBar.open('Error creating account', null,
-            {duration: 4000, verticalPosition: "top"});
+            {duration: 4000, verticalPosition: 'top'});
         }
         console.error(error);
       });

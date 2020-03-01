@@ -1,12 +1,14 @@
-import {Component} from "@angular/core";
-import {GithubRepoService} from "./github-repo.service";
-import {FormBuilder, FormGroup} from "@angular/forms";
-import {MatDialog, MatSnackBar} from "@angular/material";
-import {NoteDialogComponent} from "../note/note-dialog.component";
-import {NoteService} from "../note/note.service";
-import {GithubRepo} from "./github-repo";
-import {Note} from "../note/note";
-import {NoteDialogPagerComponent} from "../note/note-dialog-pager.component";
+import {Component} from '@angular/core';
+import {GithubRepoService} from './github-repo.service';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {NoteDialogComponent} from '../note/note-dialog.component';
+import {NoteService} from '../note/note.service';
+import {GithubRepo} from './github-repo';
+import {Note} from '../note/note';
+import {NoteDialogPagerComponent} from '../note/note-dialog-pager.component';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatDialog} from '@angular/material/dialog';
+import {finalize} from 'rxjs/operators';
 
 @Component({
   templateUrl: './repo.component.html',
@@ -31,8 +33,10 @@ export class RepoComponent {
   onSearch(): void {
     this.repos = null;
     this.loading = true;
-    this.githubRepoService.searchRepos(this.form.controls['searchTerm'].value)
-      .finally(() => this.loading = false)
+    this.githubRepoService.searchRepos(this.form.controls.searchTerm.value)
+      .pipe(
+        finalize(() => this.loading = false)
+      )
       .subscribe(response => {
         if (response && response._embedded) {
           this.repos = response._embedded.githubRepos;
@@ -41,7 +45,7 @@ export class RepoComponent {
         }
       }, error => {
         this.matSnackBar.open('Error searching repos', null,
-          {duration: 4000, verticalPosition: "top"});
+          {duration: 4000, verticalPosition: 'top'});
         console.error(error);
       });
   }
@@ -58,7 +62,7 @@ export class RepoComponent {
             this.updateRepo(repoToUpdate);
           }, error => {
             this.matSnackBar.open('Error refreshing repo', null,
-              {duration: 4000, verticalPosition: "top"});
+              {duration: 4000, verticalPosition: 'top'});
             console.error(error);
           });
       }

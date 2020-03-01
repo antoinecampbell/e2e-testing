@@ -1,6 +1,6 @@
 import {LoginPage} from './login.po';
-import {E2EUtils} from "./e2e-utils";
-import {browser} from "protractor";
+import {E2EUtils} from './e2e-utils';
+import {browser} from 'protractor';
 
 describe('Login Page', () => {
   const page: LoginPage = new LoginPage();

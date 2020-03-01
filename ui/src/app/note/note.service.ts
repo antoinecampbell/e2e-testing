@@ -1,7 +1,7 @@
-import {Injectable} from "@angular/core";
-import {Observable} from "rxjs/Observable";
-import {HttpClient} from "@angular/common/http";
-import {Note, NotesResponse} from "./note";
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+import {Note, NotesResponse} from './note';
 
 export interface INoteService {
   getNotes(): Observable<NotesResponse>;
@@ -26,8 +26,8 @@ export class NoteService implements INoteService {
   }
 
   deleteNote(note: Note): Observable<Note> {
-    if (note && note._links && note._links['self']) {
-      return this.httpClient.delete(note._links['self']['href']) as Observable<Note>;
+    if (note && note._links && note._links.self) {
+      return this.httpClient.delete(note._links.self.href) as Observable<Note>;
     } else {
       return Observable.throw(new Error('Unable to delete note with missing link'));
     }

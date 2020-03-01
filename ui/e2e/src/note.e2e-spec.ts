@@ -1,6 +1,6 @@
-import {NotePage} from "./note.po";
-import {E2EUtils} from "./e2e-utils";
-import {browser} from "protractor";
+import {NotePage} from './note.po';
+import {E2EUtils} from './e2e-utils';
+import {browser} from 'protractor';
 
 describe('Note Page', () => {
   const page = new NotePage();

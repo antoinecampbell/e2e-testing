@@ -1,19 +1,17 @@
 // Karma configuration file, see link for more information
 // https://karma-runner.github.io/1.0/config/configuration-file.html
 
-const path = require('path');
-
 module.exports = function (config) {
   config.set({
     basePath: '',
-    frameworks: ['jasmine', '@angular/cli'],
+    frameworks: ['jasmine', '@angular-devkit/build-angular'],
     plugins: [
-      require('karma-jasmine'),
-      require('karma-chrome-launcher'),
-      require('karma-jasmine-html-reporter'),
-      require('karma-coverage-istanbul-reporter'),
-      require('karma-junit-reporter'),
-      require('@angular/cli/plugins/karma')
+      'karma-jasmine',
+      'karma-chrome-launcher',
+      'karma-jasmine-html-reporter',
+      'karma-coverage-istanbul-reporter',
+      'karma-junit-reporter',
+      '@angular-devkit/build-angular/plugins/karma'
     ],
     files: [
       {pattern: './src/styles.css', watched: false},
@@ -25,7 +23,8 @@ module.exports = function (config) {
     coverageIstanbulReporter: {
       reports: ['html', 'lcovonly'],
       fixWebpackSourcePaths: true,
-      dir: path.join(__dirname, 'build/test-results/coverage')
+      dir: path.join(__dirname, 'build/test-results/coverage'),
+      skipFilesWithNoCoverage: false
     },
     junitReporter: {
       outputDir: 'build/test-results/unit'

@@ -1,11 +1,11 @@
 import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from "@angular/router";
-import {LoginComponent} from "./login/login.component";
-import {NoteComponent} from "./note/note.component";
-import {AuthGuard} from "./login/auth-guard.service";
-import {AnonymousGuard} from "./login/anonymous-guard.service";
-import {RepoComponent} from "./repo/repo.component";
-import {RegisterComponent} from "./login/register.component";
+import {RouterModule, Routes} from '@angular/router';
+import {LoginComponent} from './login/login.component';
+import {NoteComponent} from './note/note.component';
+import {AuthGuard} from './login/auth-guard.service';
+import {AnonymousGuard} from './login/anonymous-guard.service';
+import {RepoComponent} from './repo/repo.component';
+import {RegisterComponent} from './login/register.component';
 
 const routes: Routes = [
   {

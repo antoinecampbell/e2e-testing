@@ -1,9 +1,10 @@
-import {Component, Inject} from "@angular/core";
-import {MAT_DIALOG_DATA, MatDialogRef, MatSnackBar} from "@angular/material";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {GithubRepo} from "../repo/github-repo";
-import {NoteService} from "./note.service";
-import {Note} from "./note";
+import {Component, Inject} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {GithubRepo} from '../repo/github-repo';
+import {NoteService} from './note.service';
+import {Note} from './note';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 
 @Component({
   templateUrl: './note-dialog.component.html',
@@ -32,7 +33,7 @@ export class NoteDialogComponent {
         this.matDialogRef.close(savedNote);
       }, error => {
         this.matSnackBar.open('Error creating note', null,
-          {duration: 4000, verticalPosition: "top"});
+          {duration: 4000, verticalPosition: 'top'});
         console.error(error);
       });
   }

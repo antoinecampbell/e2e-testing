@@ -1,7 +1,7 @@
-import {Component, OnInit} from "@angular/core";
-import {NoteService} from "./note.service";
-import {Note} from "./note";
-import {MatSnackBar} from "@angular/material";
+import {Component, OnInit} from '@angular/core';
+import {NoteService} from './note.service';
+import {Note} from './note';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   templateUrl: './note.component.html',
@@ -29,7 +29,7 @@ export class NoteComponent implements OnInit {
         }
       }, error => {
         this.matSnackBar.open('Error loading notes', null,
-          {duration: 4000, verticalPosition: "top"});
+          {duration: 4000, verticalPosition: 'top'});
         console.error(error);
       });
   }
@@ -40,7 +40,7 @@ export class NoteComponent implements OnInit {
         this.loadNotes();
       }, error => {
         this.matSnackBar.open('Error deleting note', null,
-          {duration: 4000, verticalPosition: "top"});
+          {duration: 4000, verticalPosition: 'top'});
         console.error(error);
       });
   }

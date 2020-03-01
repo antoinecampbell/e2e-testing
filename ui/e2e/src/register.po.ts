@@ -1,5 +1,5 @@
-import {$, browser, by, element} from "protractor";
-import {PageObject} from "./page.po";
+import {$, browser, by, element} from 'protractor';
+import {PageObject} from './page.po';
 
 export class RegisterPage extends PageObject {
 

@@ -1,7 +1,7 @@
-import {Component, Inject} from "@angular/core";
-import {MAT_DIALOG_DATA} from "@angular/material";
-import {Note} from "./note";
-import {GithubRepo} from "../repo/github-repo";
+import {Component, Inject} from '@angular/core';
+import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {Note} from './note';
+import {GithubRepo} from '../repo/github-repo';
 
 @Component({
   templateUrl: './note-dialog-pager.component.html',

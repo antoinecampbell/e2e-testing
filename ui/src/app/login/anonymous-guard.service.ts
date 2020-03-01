@@ -1,7 +1,7 @@
-import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from "@angular/router";
-import {Observable} from "rxjs/Observable";
-import {Injectable} from "@angular/core";
-import {UserService} from "./user.service";
+import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
+import {Observable} from 'rxjs';
+import {Injectable} from '@angular/core';
+import {UserService} from './user.service';
 
 @Injectable()
 export class AnonymousGuard implements CanActivate {

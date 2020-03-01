@@ -1,12 +1,11 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {AppComponent} from './app.component';
-import {DebugElement} from "@angular/core";
-import {UserService} from "./login/user.service";
-import {By} from "@angular/platform-browser";
-import {Observable} from "rxjs/Observable";
-import './rxjs-imports';
-import {SharedModule} from "./shared.module";
-import {RouterTestingModule} from "@angular/router/testing";
+import {DebugElement} from '@angular/core';
+import {UserService} from './login/user.service';
+import {By} from '@angular/platform-browser';
+import {SharedModule} from './shared.module';
+import {RouterTestingModule} from '@angular/router/testing';
+import {of} from 'rxjs';
 
 describe('AppComponent', () => {
   let de: DebugElement;
@@ -30,13 +29,13 @@ describe('AppComponent', () => {
       fixture = TestBed.createComponent(AppComponent);
       component = fixture.debugElement.componentInstance;
       de = fixture.debugElement;
-      userService = TestBed.get(UserService);
+      userService = TestBed.inject(UserService);
     });
   }));
 
   beforeEach(() => {
     userService.user = {name: 'user'};
-    spyOn(userService, "checkAuth").and.returnValue(Observable.of(true));
+    spyOn(userService, 'checkAuth').and.returnValue(of(true));
   });
 
   it('should create the app', () => {

@@ -1,4 +1,4 @@
-import {Note} from "../note/note";
+import {Note} from '../note/note';
 
 export class GithubRepo {
   id: number;

@@ -1,12 +1,12 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {DebugElement} from "@angular/core";
-import {Observable} from "rxjs/Observable";
-import {LoginComponent} from "./login.component";
-import {UserService} from "./user.service";
-import {SharedModule} from "../shared.module";
-import {RouterTestingModule} from "@angular/router/testing";
-import {By} from "@angular/platform-browser";
-import {Router} from "@angular/router";
+import {DebugElement} from '@angular/core';
+import {of} from 'rxjs';
+import {LoginComponent} from './login.component';
+import {UserService} from './user.service';
+import {SharedModule} from '../shared.module';
+import {RouterTestingModule} from '@angular/router/testing';
+import {By} from '@angular/platform-browser';
+import {Router} from '@angular/router';
 
 describe('LoginComponent', () => {
   let de: DebugElement;
@@ -30,13 +30,13 @@ describe('LoginComponent', () => {
       fixture = TestBed.createComponent(LoginComponent);
       component = fixture.debugElement.componentInstance;
       de = fixture.debugElement;
-      userService = TestBed.get(UserService);
+      userService = TestBed.inject(UserService);
     });
   }));
 
   beforeEach(() => {
     userService.user = {name: 'user'};
-    spyOn(userService, "checkAuth").and.returnValue(Observable.of(true));
+    spyOn(userService, 'checkAuth').and.returnValue(of(true));
   });
 
   it('should create component', () => {
@@ -70,9 +70,9 @@ describe('LoginComponent', () => {
     });
     fixture.detectChanges();
 
-    const router = TestBed.get(Router);
+    const router = TestBed.inject(Router);
     const routerSpy = spyOn(router, 'navigate').and.stub();
-    spyOn(userService, "login").and.returnValue(Observable.of(''));
+    spyOn(userService, 'login').and.returnValue(of(''));
     const button = de.query(By.css('button'));
     button.nativeElement.click();
     fixture.detectChanges();

@@ -1,9 +1,9 @@
-import {$, by, element} from "protractor";
-import * as fs from "fs";
+import {$, by, element} from 'protractor';
+import * as fs from 'fs';
 
 export class E2EUtils {
 
-  static login(username?: string = 'user', password?: string = 'user'): void {
+  static login(username: string = 'user', password: string = 'user'): void {
     $('input[formControlName="username"]').sendKeys(username);
     $('input[formControlName="password"]').sendKeys(password);
     element(by.css('button')).click();

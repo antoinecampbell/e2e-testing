@@ -7,10 +7,18 @@ const jasmineReporters = require('jasmine-reporters');
 exports.config = {
   allScriptsTimeout: 11000,
   specs: [
-    './e2e/**/*.e2e-spec.ts'
+    './src/**/*.e2e-spec.ts'
   ],
   capabilities: {
-    'browserName': 'chrome'
+    'browserName': 'chrome',
+    'chromeOptions': {
+      'args': [
+        '--no-sandbox',
+        '--headless',
+        '--disable-gpu',
+        '--window-size=1280x720'
+      ]
+    }
   },
   directConnect: true,
   baseUrl: 'http://localhost:4200/',
@@ -21,20 +29,8 @@ exports.config = {
     print: function() {}
   },
   onPrepare() {
-    // Delay each action by 100ms so it can be seen
-    const origFn = browser.driver.controlFlow().execute;
-    browser.driver.controlFlow().execute = function () {
-      const args = arguments;
-
-      // queue 100ms wait
-      origFn.call(browser.driver.controlFlow(), function () {
-        return protractor.promise.delayed(100);
-      });
-
-      return origFn.apply(browser.driver.controlFlow(), args);
-    };
     require('ts-node').register({
-      project: 'e2e/tsconfig.e2e.json'
+      project: resolve(__dirname, './tsconfig.json')
     });
     jasmine.getEnv().addReporter(new SpecReporter({ spec: { displayStacktrace: true } }));
     jasmine.getEnv().addReporter(new jasmineReporters.JUnitXmlReporter({

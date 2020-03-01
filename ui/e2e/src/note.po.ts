@@ -1,5 +1,5 @@
-import {$$, browser, by, ElementArrayFinder, ElementFinder} from "protractor";
-import {PageObject} from "./page.po";
+import {$$, browser, by, ElementArrayFinder, ElementFinder} from 'protractor';
+import {PageObject} from './page.po';
 
 export class NotePage extends PageObject {
 

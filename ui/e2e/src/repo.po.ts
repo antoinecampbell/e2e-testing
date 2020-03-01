@@ -1,5 +1,5 @@
-import {PageObject} from "./page.po";
-import {$, $$, browser, by, element, ElementArrayFinder, ElementFinder, protractor} from "protractor";
+import {PageObject} from './page.po';
+import {$, $$, browser, by, element, ElementArrayFinder, ElementFinder, protractor} from 'protractor';
 
 export class RepoPage extends PageObject {
 

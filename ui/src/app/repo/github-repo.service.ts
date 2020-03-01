@@ -1,7 +1,7 @@
-import {Injectable} from "@angular/core";
-import {Observable} from "rxjs/Observable";
-import {HttpClient, HttpParams} from "@angular/common/http";
-import {GithubRepo, GithubReposResponse} from "./github-repo";
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {HttpClient, HttpParams} from '@angular/common/http';
+import {GithubRepo, GithubReposResponse} from './github-repo';
 
 export interface IGithubRepoService {
 
