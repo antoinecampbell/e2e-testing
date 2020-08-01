@@ -20,6 +20,9 @@ jobs:
   build-ui:
     name: Build and Unit Test UI
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ui
     steps:
       - uses: actions/checkout@master
       - uses: actions/cache@v2
@@ -29,7 +32,4 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
       - run: npm run install
-          working-directory: ui
       - run: npm run test:ci
-          working-directory: ui
-
