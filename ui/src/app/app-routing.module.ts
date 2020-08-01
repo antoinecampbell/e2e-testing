@@ -27,7 +27,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: '',
+    path: '**',
     pathMatch: 'full',
     component: NoteComponent,
     canActivate: [AuthGuard]

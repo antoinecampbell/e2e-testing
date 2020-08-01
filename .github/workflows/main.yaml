@@ -1,0 +1,35 @@
+name: CI
+on: [push]
+
+jobs:
+  build-api:
+    name: Build and Unit Test API
+    runs-on: ubuntu-latest
+    env:
+      GRADLE_OPTS: "-Dorg.gradle.daemon=false"
+
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/cache@v2
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+      - run: ./gradlew api:build
+  build-ui:
+    name: Build and Unit Test UI
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ui
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/cache@v2
+        with:
+          path: ./ui/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/ui/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - run: npm install
+      - run: npm run test:ci
