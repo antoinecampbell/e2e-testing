@@ -9,9 +9,8 @@
     "test:coverage": "ng test --codeCoverage",
     "test:ci": "ng test --watch=false --codeCoverage --browsers=Chrome_headless",
     "lint": "ng lint --format=stylish",
-    "e2e": "ng e2e",
-    "e2e:ci": "ng e2e --protractor-config=e2e/protractor-ci.conf.js",
-    "e2e:ci-mobile": "ng e2e --protractor-config=e2e/protractor-ci-mobile.conf.js"
+    "e2e:ci": "cypress run",
+    "cypress:open": "cypress open"
   },
   "private": true,
   "dependencies": {
@@ -38,6 +37,7 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",
     "codelyzer": "^5.2.1",
+    "cypress": "^4.11.0",
     "jasmine-core": "~3.5.0",
     "jasmine-reporters": "^2.3.2",
     "jasmine-spec-reporter": "~4.2.1",
