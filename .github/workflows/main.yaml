@@ -62,7 +62,7 @@ jobs:
           ./gradlew bootRun &
           cd ui
           npm run start &
-          sleep 10
+          sleep 30
           npm run e2e:ci
       - uses: actions/upload-artifact@v2
         with:
