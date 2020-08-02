@@ -28,7 +28,9 @@ jobs:
       - uses: actions/checkout@master
       - uses: actions/cache@v2
         with:
-          path: ./ui/node_modules
+          path: |
+            ui/node_modules
+            ~/.cache/Cypress
           key: ${{ runner.os }}-node-${{ hashFiles('**/ui/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
@@ -50,7 +52,9 @@ jobs:
             ${{ runner.os }}-gradle-
       - uses: actions/cache@v2
         with:
-          path: ./ui/node_modules
+          path: |
+            ui/node_modules
+            ~/.cache/Cypress
           key: ${{ runner.os }}-node-${{ hashFiles('**/ui/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
