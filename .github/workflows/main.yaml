@@ -55,11 +55,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
       - run: |
-        ./gradlew bootRun &
-        cd ui
-        npm run start &
-        sleep 10
-        npm run e2e:ci
+          ./gradlew bootRun &
+          cd ui
+          npm run start &
+          sleep 10
+          npm run e2e:ci
       - uses: actions/upload-artifact@v2
         with:
           name: videos
