@@ -8,4 +8,4 @@ services:
       - .:/usr/src/app
     environment:
       - spring.profiles.active=e2e
-    command: sh -c "java -jar api/build/libs/api*.jar & cd ui && npm install && npm run test:ci && /usr/src/app/docker/wait-for-it.sh localhost:8080 -s -t 120 -- npm run e2e:ci"
+    command: sh -c "java -jar api/build/libs/api*.jar & cd ui && npm install && npm run test:ci && /usr/src/app/docker/wait-for-it.sh localhost:8080 -s -t 120 -- npm run e2e-cypress:ci"

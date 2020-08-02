@@ -9,8 +9,14 @@
     "test:coverage": "ng test --codeCoverage",
     "test:ci": "ng test --watch=false --codeCoverage --browsers=Chrome_headless",
     "lint": "ng lint --format=stylish",
-    "e2e:ci": "cypress run",
-    "cypress:open": "cypress open"
+    "e2e-protractor": "ng e2e",
+    "e2e-protractor:ci": "ng e2e --protractor-config=e2e/protractor-ci.conf.js",
+    "e2e-protractor:ci-mobile": "ng e2e --protractor-config=e2e/protractor-ci-mobile.conf.js",
+    "e2e-cypress": "cypress run --browser chrome",
+    "e2e-cypress:ci": "cypress run --headless --browser chrome",
+    "e2e-cypress:ci-mobile": "cypress run --headless --browser chrome --config viewportWidth=411,viewportHeight=731",
+    "cypress:open": "cypress open",
+    "cypress:open-mobile": "cypress open --config viewportWidth=411,viewportHeight=731"
   },
   "private": true,
   "dependencies": {

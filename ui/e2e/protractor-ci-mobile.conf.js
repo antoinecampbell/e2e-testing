@@ -3,6 +3,7 @@
 
 const { SpecReporter } = require('jasmine-spec-reporter');
 const jasmineReporters = require('jasmine-reporters');
+const {resolve} = require('path');
 
 exports.config = {
   allScriptsTimeout: 11000,
@@ -16,7 +17,7 @@ exports.config = {
         '--no-sandbox',
         '--headless',
         '--disable-gpu',
-        '--window-size=360x640'
+        '--window-size=411x731'
       ]
     }
   },

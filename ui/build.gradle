@@ -13,7 +13,7 @@ task unitTestCI(type: NpmTask, group: 'testing', dependsOn: npmInstall) {
 }
 
 task e2eTestCI(type: NpmTask, group: 'testing', dependsOn: npmInstall) {
-  args = ['run', 'e2e:ci']
+  args = ['run', 'e2e-cypress:ci']
 }
 
 task npmStart(type: NpmTask, group: 'node', dependsOn: npmInstall) {

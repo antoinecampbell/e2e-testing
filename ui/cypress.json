@@ -4,5 +4,7 @@
   "screenshotsFolder": "build/cypress/screenshots",
   "pluginsFile": false,
   "supportFile": false,
-  "fixturesFolder": false
+  "fixturesFolder": false,
+  "viewportWidth": 1280,
+  "viewportHeight": 710
 }
