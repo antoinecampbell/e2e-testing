@@ -57,6 +57,7 @@ jobs:
       - run: |
           ./gradlew bootRun &
           cd ui
+          npm install
           npm run start &
           sleep 10
           npm run e2e:ci
