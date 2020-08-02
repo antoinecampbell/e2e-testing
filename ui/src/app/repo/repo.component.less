@@ -1,12 +1,7 @@
 .repo-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  margin: 0 -10px;
-  & mat-card {
-    margin: 10px;
-    width: 300px;
-  }
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  grid-gap: 1rem;
   & .icon-container {
     display: flex;
     flex-direction: row;
