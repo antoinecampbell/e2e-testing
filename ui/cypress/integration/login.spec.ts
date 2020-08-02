@@ -1,5 +1,8 @@
-import {LoginUtils} from '../support/login-utils';
-import {Utils} from '../support/utils';
+/// <reference types="cypress" />
+
+
+import {LoginUtils} from '../utils/login-utils';
+import {Utils} from '../utils/utils';
 
 describe('Login Page', () => {
 

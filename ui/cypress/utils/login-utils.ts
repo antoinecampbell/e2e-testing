@@ -1,3 +1,5 @@
+/// <reference types="cypress" />
+
 /**
  * Helper methods for login testing
  */
@@ -27,7 +29,7 @@ export class LoginUtils {
     return cy.contains('Create Account');
   }
 
-  static login(username='user', password='user') {
+  static login(username = 'user', password = 'user') {
     this.getUsernameField().type(username);
     this.getPasswordField().type(password);
     this.getSignInButton().click();

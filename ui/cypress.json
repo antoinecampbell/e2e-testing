@@ -1,5 +1,8 @@
 {
   "baseUrl": "http://localhost:4200",
   "videosFolder": "build/cypress/videos",
-  "screenshotsFolder": "build/cypress/screenshots"
+  "screenshotsFolder": "build/cypress/screenshots",
+  "pluginsFile": false,
+  "supportFile": false,
+  "fixturesFolder": false
 }
