@@ -43,11 +43,11 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - uses: actions/cache@v2
-          with:
-            path: ~/.gradle/caches
-            key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
-            restore-keys: |
-              ${{ runner.os }}-gradle-
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
       - uses: actions/cache@v2
         with:
           path: ./ui/node_modules
