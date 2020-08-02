@@ -56,7 +56,8 @@ jobs:
             ${{ runner.os }}-node-
       - run: |
         ./gradlew bootRun &
-        cd ui && npm run start &
+        cd ui
+        npm run start &
         sleep 10
         npm run e2e:ci
       - uses: actions/upload-artifact@v2
