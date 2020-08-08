@@ -4,6 +4,7 @@ on: [push]
 
 env:
   GRADLE_OPTS: "-Dorg.gradle.daemon=false"
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
   build-api:
@@ -17,7 +18,14 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
-      - run: ./gradlew api:build
+      - uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - run: |
+          ./gradlew api:build api:sonarqube \
+          -Dsonar.organization=antoinecampbell \
+          -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} \
+          -Dsonar.login=${{ secrets.SONAR_TOKEN }}
   build-ui:
     name: Build and Unit Test UI
     runs-on: ubuntu-latest
@@ -36,6 +44,11 @@ jobs:
             ${{ runner.os }}-node-
       - run: npm install
       - run: npm run test:ci
+      - run: |
+          npm run sonarqube --  \
+          -Dsonar.organization=antoinecampbell \
+          -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} \
+          -Dsonar.login=${{ secrets.SONAR_TOKEN }}
   e2e-desktop:
     name: End-to-End Tests - Desktop
     runs-on: ubuntu-latest
@@ -58,6 +71,9 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/ui/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
+      - uses: actions/setup-java@v1
+        with:
+          java-version: 11
       - run: |
           ./gradlew bootRun &
           cd ui
@@ -90,6 +106,9 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/ui/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
+      - uses: actions/setup-java@v1
+        with:
+          java-version: 11
       - run: |
           ./gradlew bootRun &
           cd ui

@@ -6,6 +6,8 @@ import org.springframework.data.domain.AuditorAware;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.security.core.context.SecurityContextHolder;
 
+import java.util.Optional;
+
 /**
  *
  */
@@ -15,7 +17,7 @@ public class JpaConfig {
 
     @Bean
     public AuditorAware<String> auditorAware() {
-        return () -> SecurityContextHolder.getContext().getAuthentication().getName();
+        return () -> Optional.of(SecurityContextHolder.getContext().getAuthentication().getName());
     }
 
 }

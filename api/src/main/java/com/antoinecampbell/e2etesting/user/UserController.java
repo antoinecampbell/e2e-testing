@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -37,14 +38,14 @@ public class UserController {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    @GetMapping
     public Principal getUser(@AuthenticationPrincipal Principal principal) {
         return principal;
     }
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     @Transactional
-    public ResponseEntity createUser(@RequestBody @Valid User user) {
+    public ResponseEntity<?> createUser(@RequestBody @Valid User user) {
         if (userDetailsManager.userExists(user.getUsername())) {
             throw new UserNameExistException(user.getUsername());
         }

@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import org.springframework.hateoas.Identifiable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,7 +22,7 @@ import javax.persistence.Transient;
 @Table(name = "notes")
 @Data
 @EntityListeners(AuditingEntityListener.class)
-public class Note implements Identifiable<Long> {
+public class Note {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

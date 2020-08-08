@@ -1,6 +1,5 @@
 plugins {
   id "com.moowork.node" version "1.2.0"
-  id "org.sonarqube" version "2.6.1"
 }
 
 node {
@@ -22,12 +21,4 @@ task npmStart(type: NpmTask, group: 'node', dependsOn: npmInstall) {
 
 task clean (type: Delete) {
   delete "${project.buildDir}"
-}
-
-sonarqube {
-  properties {
-    property 'sonar.projectKey', 'e2e-testing-ui'
-    property 'sonar.sources', 'src'
-    property 'sonar.typescript.lcov.reportPaths', 'build/test-reports/coverage/lcov.info'
-  }
 }

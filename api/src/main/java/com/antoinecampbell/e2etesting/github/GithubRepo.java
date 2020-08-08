@@ -3,7 +3,7 @@ package com.antoinecampbell.e2etesting.github;
 import com.antoinecampbell.e2etesting.note.Note;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
-import org.springframework.hateoas.core.Relation;
+import org.springframework.hateoas.server.core.Relation;
 
 import javax.persistence.Transient;
 import java.util.List;

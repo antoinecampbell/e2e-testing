@@ -28,5 +28,5 @@ public interface NoteRepository extends CrudRepository<Note, Long> {
     @Modifying
     @Transactional
     @Override
-    void delete(@Param("id") Long id);
+    void deleteById(@Param("id") Long id);
 }
