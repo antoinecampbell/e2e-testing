@@ -9,6 +9,9 @@ jobs:
   build-api:
     name: Build and Unit Test API
     runs-on: ubuntu-latest
+    env:
+      SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
     steps:
       - uses: actions/checkout@master
       - uses: actions/cache@v2
@@ -17,7 +20,7 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
-      - run: ./gradlew api:build
+      - run: ./gradlew api:build api:sonarqube
   build-ui:
     name: Build and Unit Test UI
     runs-on: ubuntu-latest
