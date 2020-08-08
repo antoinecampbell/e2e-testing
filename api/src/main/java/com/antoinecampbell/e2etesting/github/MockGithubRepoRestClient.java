@@ -30,7 +30,9 @@ public class MockGithubRepoRestClient implements GithubRepoRestClient {
     }
 
     @Override
-    public GithubRepo findOne(String url) {
+    public GithubRepo findOne(String repoUrl) {
+        String url = validateUrl(repoUrl);
+
         List<GithubRepo> githubRepos = loadRepos();
         GithubRepo githubRepo = null;
         for (GithubRepo repo : githubRepos) {

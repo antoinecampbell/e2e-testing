@@ -5,8 +5,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.Profile;
-import org.springframework.data.rest.webmvc.ResourceNotFoundException;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClientException;
@@ -52,11 +50,14 @@ public class GithubRepoRestClientImpl implements GithubRepoRestClient {
 
     @Cacheable("githubRepo")
     @Override
-    public GithubRepo findOne(String url) {
+    @SuppressWarnings({"javasecurity:S5144"})
+    public GithubRepo findOne(String repoUrl) {
+        String url = validateUrl(repoUrl);
+
         ResponseEntity<GithubRepo> response = restTemplate.getForEntity(url, GithubRepo.class);
         if (response.getStatusCode().is2xxSuccessful()) {
             return response.getBody();
         }
-        throw new RestClientException("Error fetching repository");
+        throw new RestClientException("Error fetching Github repo");
     }
 }

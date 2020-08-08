@@ -9,7 +9,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.client.AutoConfigureMockRestServiceServer;
 import org.springframework.boot.test.autoconfigure.web.client.RestClientTest;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.client.MockRestServiceServer;
@@ -75,20 +74,20 @@ public class GithubRepoRestClientImplTest {
     @Test
     public void shouldReturnRepo() throws JsonProcessingException {
         GithubRepo mockRepo = TestUtils.createRepo(0);
-        mockRestServiceServer.expect(requestTo(startsWith("/123")))
+        mockRestServiceServer.expect(requestTo(startsWith("https://github.com")))
                 .andRespond(withSuccess(objectMapper.writeValueAsString(mockRepo), MediaType.APPLICATION_JSON));
 
-        GithubRepo repo = githubRepoRestClient.findOne("/123");
+        GithubRepo repo = githubRepoRestClient.findOne("https://github.com");
         assertNotNull(repo);
         assertEquals(Long.valueOf(0), repo.getId());
     }
 
     @Test
     public void shouldReturnNullRepo() throws JsonProcessingException {
-        mockRestServiceServer.expect(requestTo(startsWith("/123")))
+        mockRestServiceServer.expect(requestTo(startsWith("https://github.com")))
                 .andRespond(withSuccess(objectMapper.writeValueAsString(null), MediaType.APPLICATION_JSON));
 
-        GithubRepo repo = githubRepoRestClient.findOne("/123");
+        GithubRepo repo = githubRepoRestClient.findOne("https://github.com");
         assertNull(repo);
     }
 
