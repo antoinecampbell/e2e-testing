@@ -9,7 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.io.Serializable;
 
 /**
  *
@@ -17,7 +16,7 @@ import java.io.Serializable;
 @Entity
 @Data
 @Table(name = "users")
-public class User implements Serializable {
+public class User {
 
     @Id
     @Column(name = "username", nullable = false, length = 50)
