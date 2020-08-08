@@ -16,7 +16,8 @@
     "e2e-cypress:ci": "cypress run --headless --browser chrome",
     "e2e-cypress:ci-mobile": "cypress run --headless --browser chrome --config viewportWidth=411,viewportHeight=731",
     "cypress:open": "cypress open",
-    "cypress:open-mobile": "cypress open --config viewportWidth=411,viewportHeight=731"
+    "cypress:open-mobile": "cypress open --config viewportWidth=411,viewportHeight=731",
+    "sonarqube": "sonar-scanner"
   },
   "private": true,
   "dependencies": {
@@ -31,6 +32,7 @@
     "@angular/platform-browser-dynamic": "~9.0.3",
     "@angular/router": "~9.0.3",
     "rxjs": "~6.5.4",
+    "sonar-scanner": "^3.1.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
   },
