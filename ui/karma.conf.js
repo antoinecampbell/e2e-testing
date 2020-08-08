@@ -13,6 +13,7 @@ module.exports = function (config) {
       'karma-jasmine-html-reporter',
       'karma-coverage-istanbul-reporter',
       'karma-junit-reporter',
+      'karma-mocha-reporter',
       '@angular-devkit/build-angular/plugins/karma'
     ],
     files: [
@@ -20,6 +21,7 @@ module.exports = function (config) {
       {pattern: './node_modules/@angular/material/prebuilt-themes/indigo-pink.css', watched: false}
     ],
     client: {
+      captureConsole: false,
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
     coverageIstanbulReporter: {
@@ -31,12 +33,7 @@ module.exports = function (config) {
     junitReporter: {
       outputDir: 'build/test-results/unit'
     },
-    angularCli: {
-      environment: 'dev'
-    },
-    reporters: config.angularCli && config.angularCli.codeCoverage
-      ? ['progress', 'coverage-istanbul', 'junit']
-      : ['progress', 'kjhtml'],
+    reporters: ['kjhtml', 'coverage-istanbul', 'junit', 'mocha'],
     customLaunchers: {
       Chrome_headless: {
         base: 'Chrome',

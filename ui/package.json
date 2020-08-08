@@ -6,8 +6,8 @@
     "start": "ng serve",
     "build": "ng build --prod",
     "test": "ng test",
-    "test:coverage": "ng test --codeCoverage",
-    "test:ci": "ng test --watch=false --codeCoverage --browsers=Chrome_headless",
+    "test:coverage": "ng test --code-coverage",
+    "test:ci": "ng test --watch=false --code-coverage --browsers=Chrome_headless",
     "lint": "ng lint --format=stylish",
     "e2e-protractor": "ng e2e",
     "e2e-protractor:ci": "ng e2e --protractor-config=e2e/protractor-ci.conf.js",
@@ -32,7 +32,6 @@
     "@angular/platform-browser-dynamic": "~9.0.3",
     "@angular/router": "~9.0.3",
     "rxjs": "~6.5.4",
-    "sonar-scanner": "^3.1.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
   },
@@ -55,7 +54,9 @@
     "karma-jasmine": "~3.1.1",
     "karma-jasmine-html-reporter": "^1.5.2",
     "karma-junit-reporter": "^2.0.1",
+    "karma-mocha-reporter": "^2.2.5",
     "protractor": "~7.0.0",
+    "sonar-scanner": "^3.1.0",
     "ts-node": "~8.3.0",
     "tslint": "~5.18.0",
     "typescript": "~3.7.5"
