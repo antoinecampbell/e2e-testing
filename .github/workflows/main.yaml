@@ -21,7 +21,7 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
-      - run: ./gradlew api:build api:sonarqube -Dsonar.organization=default -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+      - run: ./gradlew api:build api:sonarqube -Dsonar.organization=antoinecampbell -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} -Dsonar.login=${{ secrets.SONAR_TOKEN }}
   build-ui:
     name: Build and Unit Test UI
     runs-on: ubuntu-latest
