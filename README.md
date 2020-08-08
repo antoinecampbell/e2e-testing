@@ -2,7 +2,7 @@
 
 ## Requirements
 - NodeJs
-- JDK 8
+- JDK 11
 - Docker (optional)
 
 ## Setup
