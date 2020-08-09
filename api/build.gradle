@@ -42,11 +42,17 @@ test {
     finalizedBy jacocoTestReport
 }
 
+def excludedFilesGlob = ["**/MockGithubRepoRestClient.*", "**/E2ETestingApplication.*"]
 jacocoTestReport {
     reports {
         xml.enabled true
         csv.enabled false
         html.destination file("${buildDir}/reports/coverage")
+    }
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: excludedFilesGlob)
+        }))
     }
 }
 
@@ -58,6 +64,6 @@ sonarqube {
     properties {
         property 'sonar.projectKey', 'e2e-testing-api'
         property 'sonar.projectName', 'e2e-testing-api'
-        property 'sonar.exclusions', '**/MockGithubRepoRestClient.java,**/E2ETestingApplication.java'
+        property 'sonar.exclusions', excludedFilesGlob.join(",")
     }
 }
