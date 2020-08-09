@@ -25,7 +25,7 @@ jobs:
           java-version: 11
       - run: |
           ./gradlew api:build api:sonarqube \
-          -Dsonar.organization=antoinecampbell \
+          -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }} \
           -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} \
           -Dsonar.login=${{ secrets.SONAR_TOKEN }}
   build-ui:
@@ -46,11 +46,14 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/ui/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
+      - uses: actions/setup-java@v1
+        with:
+          java-version: 11
       - run: npm install
       - run: npm run test:ci
       - run: |
           npm run sonarqube --  \
-          -Dsonar.organization=antoinecampbell \
+          -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }} \
           -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} \
           -Dsonar.login=${{ secrets.SONAR_TOKEN }}
   e2e-desktop:
