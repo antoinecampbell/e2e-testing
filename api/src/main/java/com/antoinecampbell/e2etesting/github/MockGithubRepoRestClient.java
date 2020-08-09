@@ -9,9 +9,11 @@ import org.springframework.web.client.RestClientException;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 
 /**
- *
+ * Mock {@link GithubRepoRestClient} used for testing,
+ * loads repos from a test file.
  */
 @Profile("e2e")
 @Component
@@ -46,8 +48,9 @@ public class MockGithubRepoRestClient implements GithubRepoRestClient {
 
     private List<GithubRepo> loadRepos() {
         try {
-            GithubRepoSearchResponse githubRepoSearchResponse =
-                    objectMapper.readValue(getClass().getClassLoader().getResourceAsStream("test.json"), GithubRepoSearchResponse.class);
+            GithubRepoSearchResponse githubRepoSearchResponse = objectMapper.readValue(
+                    Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("test.json")),
+                    GithubRepoSearchResponse.class);
             return githubRepoSearchResponse.getItems();
         } catch (IOException e) {
             throw new RestClientException("Error loading mock data", e);

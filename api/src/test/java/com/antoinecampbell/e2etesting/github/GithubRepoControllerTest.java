@@ -20,15 +20,12 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Collections;
 
 import static org.hamcrest.core.Is.is;
-import static org.mockito.Matchers.anyString;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-/**
- *
- */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureTestDatabase
@@ -45,7 +42,6 @@ public class GithubRepoControllerTest {
     @MockBean
     private GithubRepoRestClient githubRepoRestClient;
     private Note note;
-
 
     @Before
     public void setUp() {
@@ -83,6 +79,13 @@ public class GithubRepoControllerTest {
     }
 
     @Test
+    public void shouldFailToFindBlankUrl() throws Exception {
+        mockMvc.perform(get("/repos")
+                .param("url", ""))
+                .andExpect(status().is4xxClientError());
+    }
+
+    @Test
     public void shouldSearchReposWith1Note() throws Exception {
         mockMvc.perform(get("/repos")
                 .param("q", "term"))
@@ -104,6 +107,13 @@ public class GithubRepoControllerTest {
                 .andExpect(jsonPath("$._embedded.githubRepos.size()", is(1)))
                 .andExpect(jsonPath("$._embedded.githubRepos[0].notes").isArray())
                 .andExpect(jsonPath("$._embedded.githubRepos[0].notes.size()", is(2)));
+    }
+
+    @Test
+    public void shouldContainReposLink() throws Exception {
+        mockMvc.perform(get("/"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$._links.repos.href", is("http://localhost/repos")));
     }
 
     private void insertNote() {

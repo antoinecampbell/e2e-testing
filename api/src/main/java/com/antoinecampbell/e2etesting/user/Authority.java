@@ -31,6 +31,7 @@ public class Authority {
     @Column(name = "authority", nullable = false, length = 50)
     private String authority;
 
+    @Data
     public static class Key implements Serializable {
         private User user;
         private String authority;

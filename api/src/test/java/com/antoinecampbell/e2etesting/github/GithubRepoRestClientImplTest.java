@@ -92,18 +92,28 @@ public class GithubRepoRestClientImplTest {
     }
 
     @Test(expected = RestClientException.class)
-    public void shouldReturnThrowExceptionForBadRequest() {
-        mockRestServiceServer.expect(requestTo(startsWith("/123")))
-                .andRespond(withBadRequest());
+    public void shouldThrowExceptionForBadRequest() {
+        mockRestServiceServer.expect(requestTo(startsWith("https://github.com")))
+                .andRespond(withBadRequest().body("{}"));
 
-        githubRepoRestClient.findOne("/123");
+        githubRepoRestClient.findOne("https://github.com");
     }
 
     @Test(expected = RestClientException.class)
-    public void shouldReturnThrowExceptionForServerError() {
-        mockRestServiceServer.expect(requestTo(startsWith("/123")))
-                .andRespond(withServerError());
+    public void shouldThrowExceptionForServerError() {
+        mockRestServiceServer.expect(requestTo(startsWith("https://github.com")))
+                .andRespond(withServerError().body("{}"));
 
-        githubRepoRestClient.findOne("/123");
+        githubRepoRestClient.findOne("https://github.com");
+    }
+
+    @Test(expected = RestClientException.class)
+    public void shouldThrowExceptionForInvalidGithubRepoUrl() {
+        githubRepoRestClient.findOne("https://not-right.com");
+    }
+
+    @Test(expected = RestClientException.class)
+    public void shouldThrowExceptionForMalformedRepoUrl() {
+        githubRepoRestClient.findOne("not-a-url");
     }
 }
